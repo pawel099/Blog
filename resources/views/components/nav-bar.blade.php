@@ -6,10 +6,10 @@
                     class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{route('key_index')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="{{route('creates')}}" class="nav-link">add</a>
         </li>
     </ul>
 
@@ -81,7 +81,7 @@
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logout') }}" class="dropdown-item"  
+                <a href="{{ route('logout') }}" class="dropdown-item"
                    onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
                    <i class="fas fa-power-off mr-2"></i> Logout
@@ -94,7 +94,7 @@
                 <div class="dropdown-divider"></div>
             </div>
         </li>
-        
+
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                 <i class="fas fa-th-large"></i>

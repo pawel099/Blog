@@ -11,8 +11,11 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="http://localhost/webinar/aplikacje/projekty/laravel8-Adminlte/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
@@ -44,7 +47,7 @@
               </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-        
+
             <!-- Main content -->
             <div class="content">
               <div class="container-fluid">
@@ -53,7 +56,7 @@
             </div>
             <!-- /.content -->
         </div>
-        
+
         <!-- Control Sidebar -->
         <x-side-bar></x-side-bar>
 

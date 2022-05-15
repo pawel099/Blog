@@ -54,16 +54,18 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link">
+                            <a href="{{ route('home')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Home</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
+
+                            <a href="{{route('index')}}" class="nav-link">
+                               <i class="far fa-circle nav-icon"></i>
+                               <p>posty</p>
                             </a>
+
                         </li>
                     </ul>
                 </li>
