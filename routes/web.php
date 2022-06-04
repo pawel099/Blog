@@ -15,29 +15,47 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[App\Http\Controllers\ProgramController::class, 'index'])->name('key_index');
 
+Route::middleware(['auth','verified'])->group(function() {
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
 Route::get('/home', function () {
     return view('home');
-})->middleware(['auth'])->name('home');
+})->name('home');
 
 Route::get('/template', function () {
-    return view('template');
+    return view('template','verified');
 
-})->middleware(['auth'])->name('template');
+})->name('template');
 
-Route::get('/konta/', [App\Http\Controllers\PostsController::class, 'index'])->name('index')->middleware(['auth']) ;
-Route::get('/konta/edits/{posts}', [App\Http\Controllers\PostsController::class, 'edit'])->name('edit')->middleware(['auth']) ;
-Route::post('/dodaj/', [App\Http\Controllers\PostsController::class, 'store'])->name('add')->middleware(['auth']) ;
-Route::get('/dodaj/', [App\Http\Controllers\PostsController::class, 'create'])->name('creates')->middleware(['auth']) ;
-Route::post('/konta/{posts}', [App\Http\Controllers\PostsController::class, 'update'])->name('UpdatesPost')->middleware(['auth']) ;
-Route::delete('/konta/{id}', [App\Http\Controllers\PostsController::class, 'destroy'])->name('deletePost')->middleware(['auth']) ;
+//admin
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('administrator')->middleware(['can:isAdmin']);
+
+Route::get('/konta/', [App\Http\Controllers\PostsController::class, 'index'])->name('index') ;
+Route::get('/konta/edits/{posts}', [App\Http\Controllers\PostsController::class, 'edit'])->name('edit') ;
+Route::post('/dodaj/', [App\Http\Controllers\PostsController::class, 'store'])->name('add') ;
+Route::get('/dodaj/', [App\Http\Controllers\PostsController::class, 'create'])->name('creates') ;
+Route::get('/panel/', [App\Http\Controllers\AdminController::class, 'adminlite'])->name('uprawnienia')  ;
+
+Route::post('/konta/{posts}', [App\Http\Controllers\PostsController::class, 'update'])->name('UpdatesPost') ;
+Route::delete('/konta/{id}', [App\Http\Controllers\PostsController::class, 'destroy'])->name('deletePost') ;
+Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('deleteuser')->middleware(['can:isAdmin']);
+
 Route::get('/posty/{id}', [App\Http\Controllers\PostsController::class, 'article'])->name('coments');
 Route::post('/comment/{id}', [App\Http\Controllers\AplikacjaController::class, 'store'])->name('add_coment');
+Route::get('/settings/', [App\Http\Controllers\AdminController::class, 'show'])->name('panel');
+Route::delete('/remove/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_comments');
+ });
+
 require __DIR__.'/auth.php';
+Auth::routes(['verify' => true]);
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+

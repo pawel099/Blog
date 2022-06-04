@@ -15,9 +15,11 @@
 
                     <h3><a href="blog-details.html">{{$posts->tytul}}</a></h3>
                          <p> {{$posts->naglowek}}</p>
-                             <span><a href="{{route('coments',$posts->id)}}">read more</a></span>
+
 
                             <div class="img-post">
+
+                            <span><a href="{{route('coments',$posts->id)}}">read more</a></span>
 
                             @if($posts->image_path==null)
 
@@ -25,10 +27,15 @@
                                 @else
                                 <p><img class="card-img-top" src="{{asset('storage/'.$posts->image_path)}}" alt="Card image cap">
                             @endif
+
                             </div>
 
 
+
+
                      @endforeach
+
+
 
                         </div>
 

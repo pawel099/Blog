@@ -128,8 +128,7 @@
 
            <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                 <div class="navbar-profile">
-            <img src="https://img.myloview.pl/tapety/people-icon-vector-person-icon-vector-user-icon-vector-400-249786085.jpg"
-            width="35" height="35">
+             <i class="fa-solid fa fa-user fa-lg"></i>
             <span style="font-size:20px;">
                </span></i>
                <p class="mb-0 d-none d-sm-block navbar-profile-name"> </p>

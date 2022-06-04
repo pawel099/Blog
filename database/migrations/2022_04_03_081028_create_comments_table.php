@@ -24,6 +24,11 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
         });
 
+Schema::table('comments', function (Blueprint $table) {
+            $table->enum('status', ['T', 'N'])->default('T')->after('adresemail');
+
+
+                    });
 
 
 

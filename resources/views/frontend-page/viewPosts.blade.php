@@ -19,7 +19,11 @@
 <div class="col-lg-8 col-md-12">
 
                        <div class="header">
+                       @foreach($viewposts->Comments as $coment)
+                            @if ($coment->status=='T')
                         <P><h5>comment {{$viewposts->Comments->count()}}</h5></P>
+                        @endif
+                           @endforeach
                 </div>
 
     <div class="body">
@@ -28,11 +32,13 @@
         @foreach($viewposts->Comments as $coment)
                <ul class="comment-reply list-unstyled">
                         <li class="row clearfix">
-
+@if ($coment->status=='T')
      <div class="icon-box col-md-2 col-4">
        <img class="img-fluid img-small" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
            <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+
              <h5 class="m-b-0">{{$coment->nickcomentarza}}</h5>
+
                 <p>{{$coment->contents}}</p>
 
                 <ul class="list-inline">
@@ -42,6 +48,7 @@
              </ul>
          </div>
       </li>
+ @endif
     @endforeach
 
 	        <div class="card">

@@ -9,7 +9,7 @@
             <a href="{{route('key_index')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('creates')}}" class="nav-link">add</a>
+            <a href="{{route('creates')}}" class="nav-link">dodaj post</a>
         </li>
     </ul>
 
@@ -30,7 +30,7 @@
                                 <i class="fas fa-search"></i>
                             </button>
                             <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                <i class="fas fa-times"></i>
+                                <i class="fas fa fa-times"></i>
                             </button>
                         </div>
                     </div>

@@ -129,7 +129,9 @@
                                       <div class="col-md-6">
 
               <div class="file-field">
-              <input id="image" style="border:0px;" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+              <input id="image" style="border:0px;" type="file" class="form-control @error('image') is-invalid @enderror" name="image" >
+
+
               </div>
 
 

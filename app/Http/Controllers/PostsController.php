@@ -79,12 +79,14 @@ public function create()
 public function store(StorePostRequest $request,posts $posts): RedirectResponse
   {
 
-  //dd($request);
+ //dd($request);
 
  $posts = new Posts($request->all());
 
    if ($request->hasFile('image')) {
+
       $posts->image_path = $request->file('image')->store('imagesPosts');
+
    }
 
    $posts->save();
@@ -107,26 +109,14 @@ public function store(StorePostRequest $request,posts $posts): RedirectResponse
  public function article($id) {
 
  $post= Posts::find($id);
+
  return view('frontend-page.viewPosts',[
  'viewposts'=>$post
- ]
- );
+ ]);
 
+}
 
-
- }
-
-
-
-
-
-
-
-
-
-
-
-    /**
+/**
      * Display the specified resource.
      *
      * @param int $id
@@ -166,10 +156,18 @@ public function store(StorePostRequest $request,posts $posts): RedirectResponse
      $posts->fill($request->validated());
 
       if ($request->hasFile('image')) {
+
          if (Storage::exists($oldImagePath)) {
+
               Storage::delete($oldImagePath);
+
+              $posts->image_path = $request->file('image')->store('imagesPosts');
             }
-               $posts->image_path = $request->file('image')->store('imagesPosts');
+
+
+
+
+
          }
 
      $posts->save();

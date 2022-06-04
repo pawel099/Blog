@@ -7,6 +7,9 @@ use App\Http\Requests\StoreUsersRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\auth;
 use App\Models\User;
+use App\Models\Comments;
+use App\Models\Posts;
+
 
 class AdminController extends Controller
 {
@@ -21,11 +24,36 @@ class AdminController extends Controller
      $user = new User();
      $user = User::paginate(7);
 
-     return view ('skin.admin',
-     ['wynik'=>$user]
+     return view ('admin.list',[
+     'wynik'=>$user
+
+     ]
+
 
     );
   }
+
+
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+  public function adminlite()
+      {
+         $post = Posts::all();
+
+         return view ('admin.settings',[
+              'wyniki'=>$post
+
+              ]);
+
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -54,9 +82,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+      $coments= Comments::all();
+        return view('admin.commentsList',[
+        'comments'=>$coments
+        ]);
     }
 
     /**
@@ -112,4 +143,19 @@ class AdminController extends Controller
         $user->delete();
         return redirect('/admin');
     }
+
+   /**
+        * Remove the specified resource from storage.
+        *
+        * @param  int  $id
+        * @return \Illuminate\Http\Response
+        */
+       public function delete($id)
+       {
+           $comments = Comments::findOrFail($id);
+           $comments->delete();
+           return redirect('/settings');
+       }
+
+
 }

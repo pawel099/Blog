@@ -37,7 +37,8 @@
                 data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+
+                        <i class="nav-icon fas fa fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
@@ -61,10 +62,28 @@
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{route('index')}}" class="nav-link">
-                               <i class="far fa-circle nav-icon"></i>
-                               <p>posty</p>
-                            </a>
+                     <a href="{{route('index')}}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                              <p>posty</p>
+                         </a>
+                       @can('isAdmin')
+
+                       <a href="{{route('administrator')}}" class="nav-link">
+
+                      <i class="far fa-circle nav-icon"></i>
+                            <p>admin</p>
+                          </a>
+                      @endcan
+
+                        @can('isAdmin')
+
+                     <a href="{{route('panel',)}}" class="nav-link">
+                       <i class="far fa-circle nav-icon"></i>
+                         <p>coments</p>
+                      </a>
+                        @endcan
+
+
 
                         </li>
                     </ul>
