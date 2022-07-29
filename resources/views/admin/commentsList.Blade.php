@@ -18,7 +18,10 @@
             <th  scope="col"> </th>
             <th scope="col">nickcomentarza</th>
             <th scope="col">adresemail</th>
-            <th scope="col">zatwierdzone</th>
+            <th scope="col">
+
+            zatwierdzony
+           </th>
             <th scope="col">contents</th>
             <th scope="col">created_at</th>
 
@@ -37,7 +40,14 @@
 
             <td>{{$coment->nickcomentarza}}</td>
             <td>{{$coment->adresemail}}</td>
-            <td>{{$coment->status}}</td>
+            <td>
+            <!-- Regular switch -->
+                        <label class="switch">
+                          <input type="checkbox">
+                          <span class="slider round"></span>
+                        </label>
+
+            </td>
             <td>{{$coment->contents}}</td>
             <td>{{$coment->created_at}}</td>
 
@@ -81,4 +91,18 @@
 
 
 </x-app-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

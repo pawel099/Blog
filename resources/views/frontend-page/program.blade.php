@@ -6,41 +6,28 @@
  <div class="container">
             <div class="row clearfix">
 
-                <div style="padding:25px 25px 25px 25px;" class="col-lg-8 col-md-12 left-box">
-
-                    <div class="card single_post">
-
-                        <div class="body">
+            <div style="padding:25px 25px 25px 25px;" class="col-lg-8 col-md-12 left-box">
+              <div class="card single_post">
+                  <div class="body">
                     @foreach ($program as $posts)
 
-                    <h3><a href="blog-details.html">{{$posts->tytul}}</a></h3>
-                         <p> {{$posts->naglowek}}</p>
-
-
-                            <div class="img-post">
-
-                            <span><a href="{{route('coments',$posts->id)}}">read more</a></span>
-
-                            @if($posts->image_path==null)
-
-                                <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/87CEFA/000000" alt="First slide">
-                                @else
-                                <p><img class="card-img-top" src="{{asset('storage/'.$posts->image_path)}}" alt="Card image cap">
-                            @endif
-
-                            </div>
+                <h3><a href="blog-details.html">{{$posts->tytul}}</a></h3>
+                {{$posts->naglowek}}</p>
+                <span><a href="{{route('coments',$posts->id)}}">read more</a></span>
+                <div class="img-post">
 
 
 
-
-                     @endforeach
-
-
-
+                 @if($posts->image_path==null)
+                      <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/87CEFA/000000" alt="First slide">
+                              @else
+                        <img class="card-img-top" src="{{asset('storage/'.$posts->image_path)}}" alt="Card image cap">
+                          @endif
                         </div>
-
-                    </div>
-                 </div>
+                               @endforeach
+              </div>
+                     </div>
+                        </div>
 
                <div class="col-lg-4 col-md-12 right-box">
                     <div class="card">

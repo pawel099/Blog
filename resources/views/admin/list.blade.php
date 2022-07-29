@@ -6,15 +6,15 @@
 
      <x-slot name="breadcrumb">
             <li class="breadcrumb-item active">Dashboard</li>
-        </x-slot>
+     </x-slot>
+
 
  <div class="middles_table">
-
  <table class="table">
+ <thead class="table-active">
 
-    <thead class="table-active">
+
       <tr>
-
             <th  scope="col"> </th>
             <th scope="col">name</th>
             <th scope="col">email</th>
@@ -22,17 +22,17 @@
             <th scope="col">email_verified_at</th>
             <th scope="col">data</th>
             <th scope="col">action</th>
-            </tr>
+      </tr>
 
-  </thead>
+          </thead>
       <tbody>
 
-      <i class="fa-regular fa-location-pen"></i>
+               <i class="fa-regular fa-location-pen"></i>
+                   <tr>
+                @foreach ($wynik as $list)
 
 
-          <tr>
-              @foreach ($wynik as $list)
-            <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
 
 
             <td>{{$list->name}} </td>
@@ -45,19 +45,16 @@
 			  @else
 				  niezweryfikowany
 			 @endif
-			</td>
+
+		    </td>
 			<td>{{$list->data}}</td>
+            <td>
 
-
-
-<td>
-<a href="{{route('uprawnienia')}}" class="btn btn-primary  btn-sm enabled" role="button" aria-disabled="true" title="edytuj">E</a>
-<form action="{{route('deleteuser',$list->id)}}" method="post" style="display: inline-block">
-
+    <form action="{{route('deleteuser',$list->id)}}" method="post" style="display: inline-block">
     @csrf @method('DELETE')
-    <button class="btn btn-success btn-danger btn-sm" type="submit" title="usuń">X</button>
+    <button class="btn btn-success btn-danger btn-sm" type="submit" title="usuń"><i class="fa-solid fa fa-trash"></i></button>
 
-      </form>
+             </form>
            </td>
          </tr>
 
@@ -77,8 +74,11 @@
               <option value="">--Please choose an option--</option>
               <option value="delete">delete</option>
 
-     </td>
-          </tr>
+           </td>
+        </tr>
+     <tr>
+    <td>{{$wynik->links()}}</td>
+     </tr>
 
 </thead>
 </tbody>

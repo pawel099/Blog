@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
 
      $user = new User();
-     $user = User::paginate(7);
+     $user = User::paginate(1);
 
      return view ('admin.list',[
      'wynik'=>$user
@@ -84,7 +84,7 @@ class AdminController extends Controller
      */
     public function show()
     {
-      $coments= Comments::all();
+      $coments= Comments::paginate(1);
         return view('admin.commentsList',[
         'comments'=>$coments
         ]);

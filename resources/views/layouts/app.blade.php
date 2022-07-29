@@ -1,71 +1,183 @@
 <!DOCTYPE html>
-
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <title>{{ config('app.name') }}</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+          crossorigin="anonymous"/>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="http://localhost/webinar/aplikacje/projekty/laravel8-Adminlte/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{asset('/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/plugins/jqvmap/jqvmap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/alt/adminlte.components.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/alt/adminlte.extra-components.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/alt/adminlte.pages.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/alt/adminlte.plugins.min.css">
+
+
+
+
+    @yield('third_party_stylesheets')
+
+    @stack('page_css')
 </head>
 
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper" style="margin-top:12px;">
+<p>
+    <!-- Main Header -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
 
-        <!-- Navbar -->
-        <x-nav-bar></x-nav-bar>
-        <!-- /.navbar -->
+        <li class="nav-item">
+         <a class="nav-link" href="{{route('key_index')}}" role="button"><i class="fa-solid fa fa-house-user"></i></a>
 
-        <!-- Main Sidebar Container -->
-        <x-main-aside></x-main-aside>
+       </li>
 
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-              <div class="container-fluid">
-                <div class="row mb-2">
-                  <div class="col-sm-6">
-                    {{ $header }}
-                  </div><!-- /.col -->
-                  <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                      {{ $breadcrumb }}
-                    </ol>
-                  </div><!-- /.col -->
-                </div><!-- /.row -->
-              </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+     <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 
-            <!-- Main content -->
-            <div class="content">
-              <div class="container-fluid">
-                {{ $slot }}
-              </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content -->
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{{route('add')}}" role="button"><i class="fa-regular fa fa-paste"></i></a>
+
+              </li>
+            </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                         class="user-image img-circle elevation-2" alt="User Image">
+                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <!-- User image -->
+                    <li class="user-header bg-primary">
+                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                             class="img-circle elevation-2"
+                             alt="User Image">
+                        <p>
+                            {{ Auth::user()->name }}
+                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                        </p>
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        <a href="#" class="btn btn-default btn-flat float-right"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Sign out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Left side column. contains the logo and sidebar -->
+@include('layouts.sidebar')
+
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+
+        {{$slot}}
+                 <section class="content">
+
+
+                 </section>
+
+
         </div>
 
-        <!-- Control Sidebar -->
-        <x-side-bar></x-side-bar>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 3.0.5
+        </div>
+        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        reserved.
+    </footer>
+</div>
 
-        <!-- Main Footer -->
-        <x-footer></x-footer>
-    </div>
-    <!-- ./wrapper -->
+<script src="{{asset('js/app.js') }}" defer></script>
+ <link rel="stylesheet" href="https://adminlte.io/docs/3.1//assets/css/adminlte.min.css">
+<ul id="sidebarTree" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-address-book"></i>
+        <p>
+            LEVEL 1 ITEM
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="#" class="nav-link" id="level2item">
+                <i class="nav-icon far fa-circle"></i>
+                <p>LEVEL 2 ITEM</p>
+            </a>
+        </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-address-book"></i>
+            <p>
+                LEVEL 2 ITEM - EXPANDABLE
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="level3item">
+                    <i class="nav-icon far fa-circle"></i>
+                    <p>LEVEL 3 ITEM</p>
+                </a>
+            </li>
+        </ul>
+        </li>
+    </ul>
+</li>
+
+<!-- jQuery -->
+<script src="{{asset('/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('/dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('dist/js/demo.js')}}"></script>
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
+ <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/demo.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/pages/dashboard.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/pages/dashboard2.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/pages/dashboard3.min.js"></script>
+
+@yield('third_party_scripts')
+@stack('page_scripts')
+
 </body>
-
-
 </html>
-

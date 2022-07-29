@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -24,19 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
-
-        return view('layouts.app');
+        return view('home');
     }
-
-
-/**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
-
-
-    }
+}

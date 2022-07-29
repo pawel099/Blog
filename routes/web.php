@@ -33,26 +33,32 @@ Route::get('/template', function () {
 
 //admin
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('administrator')->middleware(['can:isAdmin']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('administrator')->middleware('can:isAdmin');
 
 Route::get('/konta/', [App\Http\Controllers\PostsController::class, 'index'])->name('index') ;
 Route::get('/konta/edits/{posts}', [App\Http\Controllers\PostsController::class, 'edit'])->name('edit') ;
 Route::post('/dodaj/', [App\Http\Controllers\PostsController::class, 'store'])->name('add') ;
 Route::get('/dodaj/', [App\Http\Controllers\PostsController::class, 'create'])->name('creates') ;
-Route::get('/panel/', [App\Http\Controllers\AdminController::class, 'adminlite'])->name('uprawnienia')  ;
+
 
 Route::post('/konta/{posts}', [App\Http\Controllers\PostsController::class, 'update'])->name('UpdatesPost') ;
 Route::delete('/konta/{id}', [App\Http\Controllers\PostsController::class, 'destroy'])->name('deletePost') ;
-Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('deleteuser')->middleware(['can:isAdmin']);
+Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('deleteuser')->middleware('can:isAdmin'); ;
 
-Route::get('/posty/{id}', [App\Http\Controllers\PostsController::class, 'article'])->name('coments');
-Route::post('/comment/{id}', [App\Http\Controllers\AplikacjaController::class, 'store'])->name('add_coment');
+
+
 Route::get('/settings/', [App\Http\Controllers\AdminController::class, 'show'])->name('panel');
+
 Route::delete('/remove/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_comments');
+
  });
 
+Route::get('/posty/{id}', [App\Http\Controllers\PostsController::class, 'article'])->name('coments');
+Route::post('/comment/{id}', [App\Http\Controllers\AplikacjaController::class, 'store'])->name('add_coment')->middleware(['auth']);
 require __DIR__.'/auth.php';
 Auth::routes(['verify' => true]);
+
+
 
 
 

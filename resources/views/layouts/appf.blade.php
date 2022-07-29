@@ -20,6 +20,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
     rel="stylesheet"  type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -127,8 +128,8 @@
 <span class="nav-item dropdown">
 
            <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                <div class="navbar-profile">
-             <i class="fa-solid fa fa-user fa-lg"></i>
+                <div class="navbar-profile"><i class="fa-solid fa fa-user-plus 2xl"></i>
+
             <span style="font-size:20px;">
                </span></i>
                <p class="mb-0 d-none d-sm-block navbar-profile-name"> </p>
@@ -137,7 +138,7 @@
                     </a>
     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
 
-           <h6 class="p-3 mb-0">   </h6>
+           <h6 class="p-3 mb-0">  </h6>
            <div class="dropdown-divider"> </div>
 
                <div class="preview-thumbnail">
@@ -182,7 +183,7 @@
             </div>
 
            <div class="preview-item-content">
-              <p class="preview-subject mb-1">Admin</p>
+              <p class="preview-subject mb-1">Profile</p>
               </div>
        </a>
 

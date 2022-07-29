@@ -20,4 +20,3 @@
 <body class="hold-transition login-page">
     {{ $slot }}
 </body>
-

@@ -25,7 +25,7 @@ class CreateCommentsTable extends Migration
         });
 
 Schema::table('comments', function (Blueprint $table) {
-            $table->enum('status', ['T', 'N'])->default('T')->after('adresemail');
+            $table->enum('status', ['T', 'N'])->default('N')->after('adresemail');
 
 
                     });

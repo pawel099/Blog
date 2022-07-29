@@ -1,5 +1,9 @@
- 
-   
+<x-app-layout>
+    <x-slot name="header">
+        <h5 class="m-0">{{ __('Template') }}</h5>
+    </x-slot>
+
+
 
     <div class="row">
         <div class="col-md-12">
@@ -10,8 +14,7 @@
                   <p class="card-text">
 
 
-
-                  </p>
+                       </p>
 
                   <a href="#" class="card-link">Card link</a>
                   <a href="#" class="card-link">Another link</a>
@@ -19,4 +22,6 @@
             </div>
         </div>
     </div>
- 
+
+</x-app-layout>
+
