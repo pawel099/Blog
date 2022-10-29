@@ -50,11 +50,16 @@
 			<td>{{$list->data}}</td>
             <td>
 
+            <a href="{{route('usersSet')}}" class="btn btn-success btn-sm enabled" title="editProfil">
+            <i class="fa-solid fa fa-file-word"></i></a>
+
     <form action="{{route('deleteuser',$list->id)}}" method="post" style="display: inline-block">
     @csrf @method('DELETE')
     <button class="btn btn-success btn-danger btn-sm" type="submit" title="usuń"><i class="fa-solid fa fa-trash"></i></button>
 
              </form>
+
+
            </td>
          </tr>
 

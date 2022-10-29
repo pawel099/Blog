@@ -29,10 +29,7 @@ Schema::table('comments', function (Blueprint $table) {
 
 
                     });
-
-
-
-    }
+        }
 
     /**
      * Reverse the migrations.

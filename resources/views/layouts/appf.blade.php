@@ -1,203 +1,77 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Hello, world!</title>
+</head>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/appv.js') }}" defer></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-    rel="stylesheet"  type='text/css'>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
-     <link href="{{asset('css/style2.css')}}" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    </head>
-    <body>
-
-
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <div class="container-fluid">
-     <a class="navbar-brand" href="#"> Moj Blog</a>
-     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
-     </button>
-     <div class="collapse navbar-collapse" id="navbarScroll">
-       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-         <li class="nav-item">
-           <a class="nav-link active" aria-current="page" href="#">Home</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="#">Link</a>
-         </li>
-         <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Link
-           </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-             <li><a class="dropdown-item" href="#">Action</a></li>
-             <li><a class="dropdown-item" href="#">Another action</a></li>
-             <li><hr class="dropdown-divider"></li>
-             <li><a class="dropdown-item" href="#">Something else here</a></li>
-           </ul>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
-         </li>
-       </ul>
-       <form class="d-flex">
-         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-         <button class="btn btn-outline-success" type="submit">Search</button>
-       </form>
-     </div>
-   </div>
-
-<div class="container">
-
-        <a class="navbar-brand" href="index.html"> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-         <div style="margin-left:60px;" class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-         <ul  class="navbar-nav">
-
-      @if (Auth::user())
-
-
-       <span style="font-size:15px;font-family:verdana;">
-               <li class="nav-item">
-                   <a class="nav-link" href="#">
-            <i class="fa-fight fa fa-house-window"></i>
-            </a>
-          </li>
-       </span>
-
-
-
-<span style="font-family:cursive;">
-
- <li class="nav-item active">
-     </li>
- </span>
-
-
-
-  <span style="font-size:11px;">
-  <li class="nav-item">
-  </li>
-
-</span>
-
-
- @else
-
-   <li class="nav-item">
-   <a style="font-size:13px;" class="nav-link" href="{{route('login')}}">zaloguj
-
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+    <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Bootstrap
   </a>
-     </li>
+    <form class="form-inline  ">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 
-    <li class="nav-item">
-    <a style="font-size:13px;" class="nav-link" href="{{route('register')}}"> nowe konto</a>
-    </li>
+    </form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  @endif
-   </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="mr-auto"></div>
+      <ul class="navbar-nav my-2 my-lg-0">
+<li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+          <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
+            <h6 class="dropdown-header">Dropdown header</h6>
 
-@if (Auth::user())
+           @if (Auth::user())
 
-<div id="toogles" style="position:relative; right:100px;">
-
-
-<span class="nav-item dropdown">
-
-           <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                <div class="navbar-profile"><i class="fa-solid fa fa-user-plus 2xl"></i>
-
-            <span style="font-size:20px;">
-               </span></i>
-               <p class="mb-0 d-none d-sm-block navbar-profile-name"> </p>
-                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                      </div>
-                    </a>
-    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-
-           <h6 class="p-3 mb-0">  </h6>
-           <div class="dropdown-divider"> </div>
-
-               <div class="preview-thumbnail">
-               <div class="preview-icon bg-dark rounded-circle">
-               <i class="mdi mdi-settings text-success"></i>
-                 </div>
-                </div>
-
-                   <div class="preview-item-content">
-
-                  </div>
-                </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item" href="#">
+            <a class="dropdown-item" href="{{route('index')}}">panel</a>
 
 
-     <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
-      @csrf
-           </form>
-                 <a class="dropdown-item preview-item" href="{{route('logout')}}"
-                              onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit()";>
-
-                        <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-logout text-danger"></i>
-                           </div>
-                     </div>
-
-             <div class="preview-item-content">
-
-                     <p class="preview-subject mb-1">{{ __('Logout')}}</p>
-                   </div>
-               </a>
-
-         <a class="dropdown-item preview-item" href="{{route('dashboard')}} ">
-          <div class="preview-thumbnail">
-             <div class="preview-icon bg-dark rounded-circle">
-                 <i class="mdi mdi-logout text-danger"></i>
-
-               </div>
-            </div>
-
-           <div class="preview-item-content">
-              <p class="preview-subject mb-1">Profile</p>
-              </div>
-       </a>
-
- @endif
+            @else
+                 <a class="dropdown-item" href="{{route('login')}}">zaloguj się </a>
+                 <a class="dropdown-item" href="{{route('register')}}">nowe konto</a>
+             @endif
 
 
-     </span>
-   </nav>
-   </div>
 
-   <main class="py-4">
-   @yield('content')
-         </div>
-        </main>
+          </div>
+
+        </li>
+
+      </ul>
+
+      </div>
   </nav>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<main class="py-4">
+   @yield('content')
+
+   </main>
+  </nav>
+
 </body>
 </html>

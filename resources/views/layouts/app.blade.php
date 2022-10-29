@@ -5,9 +5,10 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-          crossorigin="anonymous"/>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+ integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+ crossorigin="anonymous"/>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -29,28 +30,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/alt/adminlte.plugins.min.css">
 
 
+@yield('third_party_stylesheets')
+@stack('page_css')
 
-
-    @yield('third_party_stylesheets')
-
-    @stack('page_css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper" style="margin-top:12px;">
-<p>
-    <!-- Main Header -->
+
+<div style="margin-left:150px;">
+ <div class="container">
+         </div>
+     </div>
+
+ <!-- Main Header -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
 
         <li class="nav-item">
-         <a class="nav-link" href="{{route('key_index')}}" role="button"><i class="fa-solid fa fa-house-user"></i></a>
-
-       </li>
+        <a class="nav-link" href="{{route('key_index')}}" role="button"><i class="fa-solid fa fa-house-user"></i></a>
+        </li>
 
      <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 
             </li>
 
@@ -60,9 +63,11 @@
               </li>
             </ul>
 
+
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+
+                <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
                          class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -75,12 +80,13 @@
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            <small>Member since {{Auth::user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+
+                        <a href="{{route('profil')}}" class="btn btn-default btn-flat">profile</a>
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Sign out
@@ -101,13 +107,9 @@
     <div class="content-wrapper" >
 
         {{$slot}}
-                 <section class="content">
-
-
-                 </section>
-
-
-        </div>
+         <section class="content">
+             </section>
+         </div>
 
     <!-- Main Footer -->
     <footer class="main-footer">

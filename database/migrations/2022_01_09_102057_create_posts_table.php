@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
 
             $table->string('nick');
             $table->string('email');
+            $table->string('naglowek');
             $table->string('tytul');
             $table->BigInteger('user_id')->autokomplete('id')->unsigned();
             $table->text('tresc');
@@ -26,13 +27,8 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
+}
 
-Schema::table('posts', function (Blueprint $table) {
-  $table->string('naglowek')->after('email');
-
-        });
-
-    }
 
     /**
      * Reverse the migrations.

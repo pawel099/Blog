@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\RedirectResponse ;
 use Illuminate\Contracts\View\View;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\auth;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,12 +27,12 @@ class PostsController extends Controller
      * @return View
      */
 
-public function index(): View
-{
+   public function index(): View  {
 
-$id = Auth::user()->id;
- $user= DB::Table('Posts')->where('user_id' ,$id)
- ->orderBy('email', 'asc')->limit(5)->get();
+    $id = Auth::user()->id;
+ 
+    $user= DB::Table('Posts')->where('user_id' ,$id)
+    ->orderBy('email', 'asc')->limit(5)->get();
 
  return view("posts.post", [
  'dane' => $user
@@ -61,15 +61,15 @@ public function create()
 
   $image = Posts::all();
   $id = Auth::user()->id;
-
+  
   $user = User::find($id);
   return view("posts.add",[
-  'dane' => $user,
-
- ]);
+  'dane' => $user]);
 
  }
-     /**
+     
+	 
+	 /**
      * Store a newly created resource in storage.
      *
      * @param StorePostRequest $request
@@ -81,15 +81,12 @@ public function create()
 public function store(StorePostRequest $request,posts $posts): RedirectResponse
   {
 
- //dd($request);
 
- $posts = new Posts($request->all());
+$posts = new Posts($request->all());
 
    if ($request->hasFile('image')) {
-
-      $posts->image_path = $request->file('image')->store('imagesPosts');
-
-   }
+     $posts->image_path = $request->file('image')->store('imagesPosts');
+    }
 
    $posts->save();
    return redirect(route('index'))->with('status', __('update success'));
@@ -108,13 +105,18 @@ public function store(StorePostRequest $request,posts $posts): RedirectResponse
   */
 
 
- public function article($id) {
+public function article($id) {
 
- $post= Posts::find($id);
+$post= Posts::find($id);
+$avatar= User::find($id);
+ 
+// $wynik = $post;
 
  return view('frontend-page.viewPosts',[
  'viewposts'=>$post
- ]);
+
+  ]);
+
 
 }
 
@@ -159,18 +161,13 @@ public function store(StorePostRequest $request,posts $posts): RedirectResponse
 
       if ($request->hasFile('image')) {
 
-         if (Storage::exists($oldImagePath)) {
+           if (Storage::exists($oldImagePath)) {
 
               Storage::delete($oldImagePath);
-
               $posts->image_path = $request->file('image')->store('imagesPosts');
             }
-
-
-
-
-
-         }
+         
+		 }
 
      $posts->save();
      return redirect(route('index'))->with('status', __('update success'));
@@ -195,5 +192,4 @@ public function store(StorePostRequest $request,posts $posts): RedirectResponse
 
 
      }
-
- }
+  }

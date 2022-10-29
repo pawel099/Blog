@@ -7,165 +7,169 @@
         <li class="breadcrumb-item active"> </li>
     </x-slot>
 
+<div class="container">
+     <div class="row justify-content-center">
+                  <div class="col-md-8">
+                      <div class="card">
 
+                          <div class="card-header"> </div>
 
-    <div class="container">
-                  <div class="row justify-content-center">
-                      <div class="col-md-8">
-                          <div class="card">
+                          <div class="card-body">
+                              <form class="md-form" method="POST" action=" " enctype="multipart/form-data">
+                                  @csrf
 
+                                  <div class="form-group row">
+                                      <label for="name" class="col-md-4 col-form-label text-md-right"> nazwa uzytkownika </label>
 
-                              <div class="card-header"> </div>
-                                <div style="background-color:#f5f5f5" class="card-body">
-                                @foreach ($wyniki as $wynik )
-                                posty:# {{$wynik->id}}
-                                  <form method="POST" action=" " enctype="multipart/form-data">
+                                      <div class="col-md-6">
+                                          <input id="name" type="text" maxlength="100" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name')}}" required autocomplete="nick" autofocus>
 
-
-                                      @csrf
-
-                                      <div class="form-group row">
-                                          <label for="name" class="col-md-4 col-form-label text-md-right">nick</label>
-
-                                          <div class="col-md-6">
-                                              <input id="nick" type="text" maxlength="500" class="form-control @error('nick') is-invalid @enderror" name="nick" value="{{$wynik->nick}}" required autocomplete="nick" autofocus disabled>
-
-                                              @error('name')
-                                                  <span class="invalid-feedback" role="alert">
-                                                      <strong>{{ $message }}</strong>
-                                                  </span>
-                                              @enderror
-                                          </div>
+                                          @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
                                       </div>
-
-
-
-
-                                 <div class="form-group row">
-                                               <label for="email" class="col-md-4 col-form-label text-md-right"> email</label>
-
-                                               <div class="col-md-6">
-                                                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$wynik->email}}" required autocomplete="amount" disabled/>
-
-                                                   @error('email')
-                                                       <span class="invalid-feedback" role="alert">
-                                                           <strong>{{ $message }}</strong>
-                                                       </span>
-                                                   @enderror
-                                               </div>
-                                      </div>
-
-
-
-
-
-                                      <div class="form-group row">
-                                               <label for="tytul" class="col-md-4 col-form-label text-md-right"> tytul</label>
-
-                                               <div class="col-md-6">
-                                                   <input id="tytul" type="text" class="form-control @error('tytul') is-invalid @enderror" name="tytul" value="{{$wynik->tytul}}" required autocomplete="amount" autofocus disabled>
-
-                                                   @error('tytul')
-                                                       <span class="invalid-feedback" role="alert">
-                                                           <strong>{{ $message }}</strong>
-                                                       </span>
-                                                   @enderror
-                                               </div>
-                                      </div>
-
-
-
-                          <div class="form-group row">
-
-                          <label for="naglowek" class="col-md-4 col-form-label text-md-right"> naglowek</label>
-
-                          <div class="col-md-6">
-                   <input id="naglowek" type="text" class="form-control @error('naglowek') is-invalid @enderror" name="naglowek" value="{{$wynik->naglowek}} " required autocomplete="amount" disabled/>
-
-                  @error('naglowek')
-                  <span class="invalid-feedback" role="alert">
-                             <strong>{{ $message }}</strong>
-                  </span>
-               @enderror
-                </div>
-       </div>
-
-                    <div class="form-group row">
-                                          <label for="description" class="col-md-4 col-form-label text-md-right"> treść </label>
-
-                                          <div class="col-md-6">
-                                              <textarea id="tresc" maxlength="1500" class="form-control @error('tresc') is-invalid @enderror" name="tresc" disabled> {{$wynik->tresc}}</textarea>
-
-                                              @error('tresc')
-                                                  <span class="invalid-feedback" role="alert">
-                                                      <strong>{{ $message }}</strong>
-                                                  </span>
-                                              @enderror
-                                          </div>
-                                      </div>
-                                   <p>
-
-@endforeach
+                                  </div>
 
 
                         <div class="form-group row">
-                     <div class="offset-md-4 col-md-6">
-                              <a href="">
-                        <img src="" alt="">
-                            </a>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">email </label>
+                                     <div class="col-md-6">
+                                          <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                      </div>
-                   </div>
-
-                                      <div class="form-group row mb-0 float-right">
-                                          <div class="col-md-6">
-
-                                              <button type="submit" class="btn btn-primary">zapisz
-                                              </button>
-
-                                          </div>
-                                      </div>
-                                  </form>
-
-
+                                 @error('email')
+                               <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                       </span>
+                              @enderror
+                                 </div>
                               </div>
 
-                          </div>
-                      </div>
 
-                  </div>
+
+
+                       <div class="form-group row">
+                       <label for="role" class="col-md-4 col-form-label text-md-right"> </label>
+
+                                       <div class="col-md-6">
+                                           <input id="role" type="hidden" class="form-control @error('role') is-invalid @enderror" name="tytul" value="{{ old('role') }}" required autocomplete="role">
+
+                                           @error('role')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+                                   </div>
+
+
+
+                       <div class="form-group row">
+
+                                     <label for="password " class="col-md-4 col-form-label text-md-right">  </label>
+                           <div class="col-md-6">
+                        <input id="password " type="hidden"  class="form-control @error('password ') is-invalid @enderror" name="password" value="{{ old('password')}}" value="password" required autocomplete="password" autofocus>
+
+                           @error('naglowek')
+                               <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+
+             </span>
+         @enderror
+       </div>
+  </div>
+
+
+            <div class="form-group row">
+
+                     <input id="user_id" type="hidden" class="form-control @error('user_id') is-invalid @enderror" name="user_id" value=" }">
+
+
+
+                                      </div>
+                                  </div>
+
+
+
+
+                       <div class="form-group row">
+                                      <label for="category" class="col-md-4 col-form-label text-md-right"> </label>
+
+                                      <div class="col-md-6">
+
+                                          @error('category_id')
+
+                                          @enderror
+                                      </div>
+                                  </div>
+
+
+
+                                  <div class="form-group row">
+
+                                      <label for="image" class="col-md-4 col-form-label text-md-right"> dodaj swoje zdjecie </label>
+                                      <div class="col-md-6">
+
+              <div class="file-field">
+
+              <input id="avatar" style="border:0px;" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar">
+
+
               </div>
-         </div>
+                                      @error('avatar')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
 
+                            <div class="form-group row mb-0 float-right">
+                                  <div class="col-md-6">
+                                         <button type="submit" class="btn btn-primary">
+                                                 zapisz
+                                           </button>
+                                     </div>
+                                        </div>
 
+                              </form>
+                          </div>
 
+                      </div>
+                  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                     <br>
-                     <br>
-                     <br>
-
-
-
-
-
+              </div>
+          </div>
+    </div>
 
 </x-app-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

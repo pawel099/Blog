@@ -1,139 +1,76 @@
 @extends('layouts.appf')
 @section('content')
 
-<div style="margin-top:50px;" id="main-content" class="blog-page">
-
- <div class="container">
-            <div class="row clearfix">
-
-            <div style="padding:25px 25px 25px 25px;" class="col-lg-8 col-md-12 left-box">
-              <div class="card single_post">
-                  <div class="body">
-                    @foreach ($program as $posts)
-
-                <h3><a href="blog-details.html">{{$posts->tytul}}</a></h3>
-                {{$posts->naglowek}}</p>
-                <span><a href="{{route('coments',$posts->id)}}">read more</a></span>
-                <div class="img-post">
 
 
+<section class="pt-5 pb-5">
+    <div class="container">
+	
+	
+	
+            <div class="row">
+            <div class="col-lg-7 mb-4">
+			@foreach ($program as $posts)
+			<h2>{{$posts->tytul}}</h2> 
+            <img class="img-fluid rounded mb-3" src="{{asset('storage/'.$posts->image_path)}}" alt="A guide to building your online presence">
+			<a href="#" class="mt-4 h2 text-dark"> </a>
+			  
+<p class="mt-4">{{$posts->naglowek}}.</p>
 
-                 @if($posts->image_path==null)
-                      <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/87CEFA/000000" alt="First slide">
-                              @else
-                        <img class="card-img-top" src="{{asset('storage/'.$posts->image_path)}}" alt="Card image cap">
-                          @endif
-                        </div>
-                               @endforeach
-              </div>
-                     </div>
-                        </div>
-
-               <div class="col-lg-4 col-md-12 right-box">
-                    <div class="card">
-                        <div class="body search">
-                            <div class="input-group m-b-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </div>
-                        </div>
+<div class="d-flex text-small">
+                    
+                    <p><span class="text-muted ml-1">dodano {{$posts->created_at}}</span></p>
+					&nbsp &nbsp <a href="{{route('coments',$posts->id)}}">czytaj wiecej</a>
+					<span class="text-muted ml-1"> </span> 
                     </div>
+				  
+	<! –posts –>			  
+				  
+				  
+@endforeach				  
+				  
+</div>
 
-
-                    <div class="card">
-                        <div class="header">
-                            <h2>Categories Clouds</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled categories-clouds m-b-0">
-                                <li><a href="javascript:void(0);">eCommerce</a></li>
-                                <li><a href="javascript:void(0);">Microsoft Technologies</a></li>
-                                <li><a href="javascript:void(0);">Creative UX</a></li>
-                                <li><a href="javascript:void(0);">Wordpress</a></li>
-                                <li><a href="javascript:void(0);">Angular JS</a></li>
-                                <li><a href="javascript:void(0);">Enterprise Mobility</a></li>
-                                <li><a href="javascript:void(0);">Website Design</a></li>
-                                <li><a href="javascript:void(0);">HTML5</a></li>
-                                <li><a href="javascript:void(0);">Infographics</a></li>
-                                <li><a href="javascript:void(0);">Wordpress Development</a></li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="header">
-                            <h2>Popular Posts</h2>
-                        </div>
-                        <div class="body widget popular-post">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="single_post">
-                                        <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                                        <span>jun 22, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                    <div class="single_post">
-                                        <p class="m-b-0">new rules, more cars, more races</p>
-                                        <span>jun 8, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="header">
-                            <h2>Instagram Post</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled instagram-plugin m-b-0">
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/100x100/87CEFA/000000" alt="image description"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-                        </div>
-
-                        <div class="body widget newsletter">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter Email">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-paper-plane"></i></span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
+    <div class="col-lg-5 ">
+	<p><h5>wiadomości:</h5>
+	
+	
+  @foreach ($program as $posts)			  
+			  
+			  
+			 
+              <ul class="list-unstyled">
+			  
+              <li class="row mb-4">
+                <a href="#" class="col-3">
+                  <img src="{{asset('storage/'.$posts->image_path)}}" alt="Image" class="rounded img-fluid"> 
+                </a>
+				<p>
+                <div class="col-9">
+                  <a href="#">
+                    <span style="font-family:arial;font-size:12px;" class="mb-3 h5 text-dark">{{$posts->tytul}}</span>
+                  </a>
+                  <div class="d-flex text-small">
+                    <a href="#"> </a>
+                    <span class="text-muted ml-1">  </span>
+                  </div>
                 </div>
-            </div>
-
-
+				
+              </li>
+			  
+			  
+			  
+		 
+			  
+@endforeach		  
+			  
+			  
+             </div>
+          </div>
         </div>
-    </div>
-
-
+		
+		
+      </section>
 
  @endsection
 

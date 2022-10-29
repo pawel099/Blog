@@ -7,6 +7,7 @@ use App\Models\Users;
 use App\Models\Comments;
 use Illuminate\Support\Facades\DB;
 
+
 class AplikacjaController extends Controller
 {
 
@@ -48,7 +49,7 @@ class AplikacjaController extends Controller
     public function store(Request $request,$id)
     {
 
-    //dd($request);
+
         $comments = new Comments($request->all());
         $comments->save();
         return redirect(route('coments',['id' => $id]))->with('status', __('update success'));
@@ -83,10 +84,13 @@ class AplikacjaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+
+	public function update(Request $request,User $user)  {
+
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -94,6 +98,8 @@ class AplikacjaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function destroy($id)
     {
         //

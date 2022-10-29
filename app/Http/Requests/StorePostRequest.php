@@ -24,11 +24,11 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-                    'nick' =>  'required|max:500',
+                    'nick' =>  'required|max:150',
                     'email' => 'required|max:500',
-                    'naglowek' => 'required|max:20',
-                    'tytul' => 'required|max:500',
-					'tresc' => 'required|max:500'
+                    'naglowek' => 'required|max:1500',
+                    'tytul' => 'required|max:1500',
+					'tresc' => 'required|min:5'
  
 
         ];

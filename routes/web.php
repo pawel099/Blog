@@ -36,6 +36,10 @@ Route::get('/template', function () {
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('administrator')->middleware('can:isAdmin');
 
 Route::get('/konta/', [App\Http\Controllers\PostsController::class, 'index'])->name('index') ;
+
+Route::get('/adminsettings/', [App\Http\Controllers\AdminController::class, 'edit'])->name('usersSet');
+Route::get('/profile/', [App\Http\Controllers\AdminController::class, 'show'])->name('profil');
+Route::post('/EdytujProfil/', [App\Http\Controllers\AdminController::class, 'store'])->name('Editprofil');
 Route::get('/konta/edits/{posts}', [App\Http\Controllers\PostsController::class, 'edit'])->name('edit') ;
 Route::post('/dodaj/', [App\Http\Controllers\PostsController::class, 'store'])->name('add') ;
 Route::get('/dodaj/', [App\Http\Controllers\PostsController::class, 'create'])->name('creates') ;
@@ -47,7 +51,7 @@ Route::delete('/admin/{id}', [App\Http\Controllers\AdminController::class, 'dest
 
 
 
-Route::get('/settings/', [App\Http\Controllers\AdminController::class, 'show'])->name('panel');
+
 
 Route::delete('/remove/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_comments');
 

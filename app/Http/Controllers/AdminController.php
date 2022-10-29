@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\auth;
 use App\Models\User;
 use App\Models\Comments;
 use App\Models\Posts;
-
+use App\Models\profile;
 
 class AdminController extends Controller
 {
@@ -18,63 +18,68 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+	public function index()
     {
 
      $user = new User();
      $user = User::paginate(1);
 
+
+
+
      return view ('admin.list',[
      'wynik'=>$user
 
-     ]
-
-
-    );
+     ]);
   }
 
-
-/**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-  public function adminlite()
-      {
-         $post = Posts::all();
-
-         return view ('admin.settings',[
-              'wyniki'=>$post
-
-              ]);
-
-
-    }
+  public function adminlite() {
 
 
 
+   }
 
-    /**
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+   */
+
+
     public function create()
     {
-        //
-    }
 
-    /**
+    }
+      /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,profile $profile)
+
     {
-        //
+
+    // dd($request);
+
+    $profile = new Profile($request->all());
+
+       if ($request->hasFile('avatar')) {
+         $profile->avatar = $request->file('avatar')->store('AvatarUsers');
+        }
+
+       $profile->save();
+       return redirect(route('index'))->with('status', __('update success'));
+
     }
+
 
     /**
      * Display the specified resource.
@@ -82,13 +87,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function show()
     {
-      $coments= Comments::paginate(1);
-        return view('admin.commentsList',[
-        'comments'=>$coments
-        ]);
-    }
+
+     return view('admin.profile');
+
+  }
 
     /**
      * Show the form for editing the specified resource.
@@ -96,16 +102,15 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
 
-    $wynik = User::find(Auth::User()->id);
+    $user = User::find($id);
 
-         return view('skin.konta',[
-        'user'=>$wynik
+        return view('list',
+        ['user'=>$user]
 
-       ]);
-    }
+     );}
 
     /**
      * Update the specified resource in storage.
@@ -114,21 +119,36 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+
+    public function update(Request $request,$id)
     {
 
-      $user = Auth::User();
 
-      DB::table('users')
-      ->where('id',$user->id)
-      ->update( [
+$dane = User::find($id);
 
-        'name' => $request->name,
-        'email' => $request->email,
-        'role' => $request->role,
-    ]);
+if ($request->file('avatar')!=null) {
 
- return redirect(route('index'))->with('status', __('update success'));
+
+             $oldImagePath = $dane->avatar ;
+             DB::table('users')
+
+    	    ->where('id',$id)
+            ->update([
+             'avatar' => $request->file('avatar')->store('AvatarUsers')
+
+              ]);
+
+                 if ($request->hasFile('avatar')) {
+                      if (Storage::exists($oldImagePath)) {
+                    Storage::delete($oldImagePath);
+                    $user->avatar = $request->file('avatar')->store('AvatarUsers');
+
+    		         }
+
+                   }
+           }
+              return view('admin.settings',
+              ['id'=>$id]) ;
 }
 
     /**
@@ -151,10 +171,9 @@ class AdminController extends Controller
         * @return \Illuminate\Http\Response
         */
        public function delete($id)
+
        {
-           $comments = Comments::findOrFail($id);
-           $comments->delete();
-           return redirect('/settings');
+
        }
 
 
