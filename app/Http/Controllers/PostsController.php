@@ -27,20 +27,46 @@ class PostsController extends Controller
      * @return View
      */
 
-   public function index(): View  {
+   public function index()  {
 
-    $id = Auth::user()->id;
- 
-    $user= DB::Table('Posts')->where('user_id' ,$id)
-    ->orderBy('email', 'asc')->limit(5)->get();
 
- return view("posts.post", [
- 'dane' => $user
 
- ]);
+    $posts = Posts::all();
+
+  return view('strona',['program'=>$posts ]);
 
 }
 
+ /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
+  /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
+	 public function comments(Request $request,$id) {
+
+		$comments = new Comments($request->all());
+        $comments->save();
+        return redirect(route('coments',['id' => $id]))->with('status', __('add_coment_success'));
+	 }
+
+
+    public function article($id)
+
+	{
+      $post = Posts::find($id);
+	      return view('post',['viewposts'=>$post]);
+    }
 
 /**
 * Show the application dashboard.
@@ -55,20 +81,17 @@ class PostsController extends Controller
      */
 
 
-public function create()
-
- {
+public function create()   {
 
   $image = Posts::all();
   $id = Auth::user()->id;
-  
+
   $user = User::find($id);
-  return view("posts.add",[
-  'dane' => $user]);
+         return view("post",['dane' => $user]);
 
  }
-     
-	 
+
+
 	 /**
      * Store a newly created resource in storage.
      *
@@ -79,7 +102,8 @@ public function create()
 
 
 public function store(StorePostRequest $request,posts $posts): RedirectResponse
-  {
+
+{
 
 
 $posts = new Posts($request->all());
@@ -105,20 +129,8 @@ $posts = new Posts($request->all());
   */
 
 
-public function article($id) {
-
-$post= Posts::find($id);
-$avatar= User::find($id);
- 
-// $wynik = $post;
-
- return view('frontend-page.viewPosts',[
- 'viewposts'=>$post
-
-  ]);
 
 
-}
 
 /**
      * Display the specified resource.
@@ -127,9 +139,10 @@ $avatar= User::find($id);
      * @return \Illuminate\Http\Response
      */
 
- public function show($id)
- {
-        //
+ public function show($id) {
+
+	 return true;
+
  }
 
     /**
@@ -137,6 +150,8 @@ $avatar= User::find($id);
      * @param  Posts $post
      * @return \Illuminate\Http\Response
      */
+
+
 
  public function edit(posts $posts)
 
@@ -166,7 +181,7 @@ $avatar= User::find($id);
               Storage::delete($oldImagePath);
               $posts->image_path = $request->file('image')->store('imagesPosts');
             }
-         
+
 		 }
 
      $posts->save();

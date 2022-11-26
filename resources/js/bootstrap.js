@@ -1,18 +1,18 @@
 window._ = require('lodash');
 
+try {
+    require('bootstrap');
+} catch (e) {}
+
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+window.axios = require('axios');
 
-    require('bootstrap');
-} catch (e) {
-}
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -28,16 +28,5 @@ try {
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//     forceTLS: true
 // });
-
-/*** add active class and stay opened when selected ***/
-var url = window.location;
-// for sidebar menu but not for treeview submenu
-$('ul.sidebar-menu a').filter(function() {
-    return this.href == url;
-}).parent().siblings().removeClass('active').end().addClass('active');
-// for treeview which is like a submenu
-$('ul.treeview-menu a').filter(function() {
-    return this.href == url;
-}).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active menu-open').end().addClass('active menu-open');

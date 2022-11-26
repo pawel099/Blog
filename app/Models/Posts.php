@@ -23,18 +23,18 @@ protected $fillable = [
 ];
 
 
-public function user()
- {
-  return $this->belongsTo(User::class);
+public function user() {
 
- }
+return $this->hasMany(Posts::class,'user_id');
+
+}
 
 
- public function comments()
-    {
+ public function comments()   {
 
-         return $this->hasMany(Comments::class,'comments_id');
-    }
+return $this->hasMany(Comments::class,'comments_id');
+
+}
 
 
 }

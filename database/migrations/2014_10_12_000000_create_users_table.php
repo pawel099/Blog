@@ -21,10 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
         });
 
      Schema::table('users', function (Blueprint $table) {
-         $table->string('avatar')->after('email')->nullable();
+         $table->string('avatar')->after('name')->nullable();
 
          });
 
