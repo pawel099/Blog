@@ -16,21 +16,14 @@ protected $fillable = [
 'email',
 'naglowek',
 'tytul',
- 'user_id',
-'image_path',
+ 'image_path',
 'tresc'
 
 ];
 
 
-public function user() {
-
-return $this->hasMany(Posts::class,'user_id');
-
-}
-
-
- public function comments()   {
+ 
+public function comments()   {
 
 return $this->hasMany(Comments::class,'comments_id');
 

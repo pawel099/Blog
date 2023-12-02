@@ -20,11 +20,10 @@ class CreatePostsTable extends Migration
             $table->string('email');
             $table->string('naglowek');
             $table->string('tytul');
-            $table->BigInteger('user_id')->autokomplete('id')->unsigned();
+             
             $table->text('tresc');
-
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+             
 
         });
 }
