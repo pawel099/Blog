@@ -1,9 +1,9 @@
  
 run this project
-composer install
-cp .env.example .env
-artisan key:generate
-configuration filnament components panel
+composer install<br>
+cp .env.example .envl<br>
+artisan key:generatel<br>
+configuration filnament components panell<br>
 https://filamentphp.com/
 
   
