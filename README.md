@@ -1,10 +1,8 @@
  
 run this project
-
 composer install
 cp .env.example .env
 artisan key:generate
-
 configuration filnament components panel
 https://filamentphp.com/
 
