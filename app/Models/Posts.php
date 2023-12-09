@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Models\Comments;
+ 
 
-class Posts extends Model
-{
+
+class Posts extends Model implements HasMedia {  
   use HasFactory;
+  use InteractsWithMedia;
 
 protected $fillable = [
 'id',

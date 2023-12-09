@@ -18,8 +18,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\Require;
 use Filament\Forms\Components\FileUpload;
- 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\MarkdownEditor; 
 use Filament\Actions\CreateAction;
  
  class PostResource extends Resource
@@ -34,17 +36,26 @@ use Filament\Actions\CreateAction;
             ->schema([
                 
                 TextInput::make('nick')->required(),
-                TextInput::make('email')->required(),
-                TextInput::make('naglowek')->required(),
+                TextInput::make('email')->email(),
+                TextInput::make('naglowek'),
                 TextInput::make('tytul')->required(),
                 FileUpload::make('image_path')
-                ->columns(1)
+                 
+                 
                 ->directory("images")
-                ->storeFileNamesIn("orginal_filename"),
-                Textarea::make('tresc')->required(),
                 
-                DatePicker::make('created_at')->columnSpan(2) ,
-                DateTimePicker::make('updated_at')->columnSpan(2) 
+                ->storeFileNamesIn("orginal_filename")
+                ->visibility('private'),
+
+                //SpatieMediaLibraryFileUpload::make('image_path')
+                //->multiple()
+                //->enableReordering()
+                //->conversionsDisk('s3'),
+                
+                MarkdownEditor::make('tresc'),
+                
+                DatePicker::make('created_at') ,
+                DateTimePicker::make('updated_at') 
             ]);
     }
 
@@ -54,11 +65,13 @@ use Filament\Actions\CreateAction;
             ->columns([
 
                 Tables\Columns\TextColumn::make('id') ,
-                Tables\Columns\TextColumn::make('image_path') ,
+                Tables\Columns\ImageColumn::make('image_path')->square(),
                 Tables\Columns\TextColumn::make('nick') ,
-                Tables\Columns\TextColumn::make('email') ,
+                
+                Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('naglowek'),
                 Tables\Columns\TextColumn::make('tytul') ,
+                
                 
                 Tables\Columns\TextColumn::make('created_at') ,
 

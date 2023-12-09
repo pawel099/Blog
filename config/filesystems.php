@@ -1,5 +1,5 @@
 <?php
-
+use Filament\Forms\Components\FileUpload;
 return [
 
     /*
@@ -30,9 +30,9 @@ return [
 
     'disks' => [
 
-        'local' => [
+    'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('app/public'),
             'throw' => false,
         ],
 
