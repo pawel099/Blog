@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources;
-
+use Closure;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -14,15 +15,28 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Tables\Columns;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Require;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\MarkdownEditor; 
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\RichEditor;
+
 use Filament\Actions\CreateAction;
+ 
+use Filament\Tables\Components\ImageOptimizer;
+
+use Spatie\ImageOptimizer\OptimizerChain;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\Joshembling;
+use Spatie\ImageOptimizer\Optimizers;
+
+use Spatie\ImageOptimizer\Image;
  
  class PostResource extends Resource
 {
@@ -34,28 +48,31 @@ use Filament\Actions\CreateAction;
     {
         return $form
             ->schema([
-                
-                TextInput::make('nick')->required(),
-                TextInput::make('email')->email(),
-                TextInput::make('naglowek'),
-                TextInput::make('tytul')->required(),
-                FileUpload::make('image_path')
-                 
-                 
-                ->directory("images")
-                
-                ->storeFileNamesIn("orginal_filename")
-                ->visibility('private'),
 
-                //SpatieMediaLibraryFileUpload::make('image_path')
-                //->multiple()
-                //->enableReordering()
-                //->conversionsDisk('s3'),
                 
-                MarkdownEditor::make('tresc'),
+
+                Card::make()->schema([
+
+                    BelongsToSelect::make('category_id')
+                    ->relationship('category','name'),
+                    TextInput::make('tytul')
+                    
+                   
+                    ->required(),
+                    TextInput::make('slug'),
+                    
+                    FileUpload::make('image_path')
+                    ->directory("images")
+                    ->storeFileNamesIn("orginal_filename")
+                    ->visibility('private'),
+                     
+                    RichEditor::make('tresc'),
+                    Toggle::make('is_published')
+                ])
                 
-                DatePicker::make('created_at') ,
-                DateTimePicker::make('updated_at') 
+                
+                
+                 
             ]);
     }
 
@@ -65,13 +82,14 @@ use Filament\Actions\CreateAction;
             ->columns([
 
                 Tables\Columns\TextColumn::make('id') ,
-                Tables\Columns\ImageColumn::make('image_path')->square(),
-                Tables\Columns\TextColumn::make('nick') ,
                 
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('naglowek'),
+                //SpatieMediaLibraryFileUpload::make('image_path')
+                //->image()
+                //->resize(50),
+                
+                Tables\Columns\ImageColumn::make('image_path'),
                 Tables\Columns\TextColumn::make('tytul') ,
-                
+                Tables\Columns\BooleanColumn::make('is_published') ,
                 
                 Tables\Columns\TextColumn::make('created_at') ,
 

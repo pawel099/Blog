@@ -15,21 +15,28 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+           
 
-            $table->string('nick');
-            $table->string('email');
-            $table->string('naglowek');
             $table->string('tytul');
-             
             $table->text('tresc');
             $table->timestamps();
              
 
         });
-}
 
-
-    /**
+ 
+            Schema::table('posts', function (Blueprint $table) {
+                
+                $table->foreignId('category_id')->constrained()->onDelete('cascade');
+                $table->string('slug')->unique();
+                $table->boolean('is_published')->default(false);
+                
+               
+                 
+    
+            });
+    }
+/**
      * Reverse the migrations.
      *
      * @return void
