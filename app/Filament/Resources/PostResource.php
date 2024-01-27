@@ -1,8 +1,10 @@
 <?php
 namespace App\Filament\Resources;
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\Resources\PostResource\Pages;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use App\Models\Posts;
@@ -49,54 +51,34 @@ use Spatie\ImageOptimizer\Image;
         return $form
             ->schema([
 
-                
-
                 Card::make()->schema([
 
                     BelongsToSelect::make('category_id')
                     ->relationship('category','name'),
-                    TextInput::make('tytul')
-                    
-                   
-                    ->required(),
+                    TextInput::make('tytul')->required(),
                     TextInput::make('slug'),
-                    
-                    FileUpload::make('image_path')
-                    ->directory("images")
-                    ->storeFileNamesIn("orginal_filename")
-                    ->visibility('private'),
-                     
+                    SpatieMediaLibraryFileUpload::make('image_path')->collection('image_path'),
                     RichEditor::make('tresc'),
                     Toggle::make('is_published')
                 ])
-                
-                
-                
-                 
-            ]);
+         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-
+                
                 Tables\Columns\TextColumn::make('id') ,
-                
-                //SpatieMediaLibraryFileUpload::make('image_path')
-                //->image()
-                //->resize(50),
-                
-                Tables\Columns\ImageColumn::make('image_path'),
+                SpatieMediaLibraryImageColumn::make('image_path')->collection('image_path')
+                ->size(50),
                 Tables\Columns\TextColumn::make('tytul') ,
                 Tables\Columns\BooleanColumn::make('is_published') ,
-                
                 Tables\Columns\TextColumn::make('created_at') ,
-
                 Tables\Columns\TextColumn::make('updated_at') ,
                 
- 
-            ])
+               ])
+
             ->filters([
                 //
             ])

@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\Comments;
 use App\Models\RelationManager;
+ 
 
 
-class Posts extends Model implements HasMedia {  
+class Posts extends Model implements HasMedia { 
+  
   use HasFactory;
-  // use RelationManager;
   use InteractsWithMedia;
-
+  // use RelationManager;
   protected $cats = [
 
     'is_published'=>'boolean',
