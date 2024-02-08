@@ -1,33 +1,28 @@
 <?php
-namespace App\Filament\Resources;
- 
-use App\Filament\Resources\PostResource\RelationManagers\TagsRelationManager;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use App\Filament\Resources\PostResource\Pages;
- 
-use App\Models\Posts;
- 
+
+namespace App\Filament\Resources\CategoryResource\RelationManagers;
+
+use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\TextInput; 
 use Filament\Forms\Components\BelongsToSelect;
- 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput; 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
- 
- 
- class PostResource extends Resource
+class PostsRelationManager extends RelationManager
 {
-    protected static ?string $model = Posts::class;
+    protected static string $relationship = 'posts';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -45,11 +40,12 @@ use Filament\Forms\Components\RichEditor;
          ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('title')
             ->columns([
-                
+                 
                 Tables\Columns\TextColumn::make('id') ,
                 SpatieMediaLibraryImageColumn::make('image_path')->collection('image_path')
                 ->size(50),
@@ -57,37 +53,23 @@ use Filament\Forms\Components\RichEditor;
                 Tables\Columns\BooleanColumn::make('is_published') ,
                 Tables\Columns\TextColumn::make('created_at') ,
                 Tables\Columns\TextColumn::make('updated_at') ,
-                
-               ])
 
+
+            ])
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-
-            TagsRelationManager::class
-            
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
-        ];
     }
 }

@@ -2,33 +2,20 @@
 
 namespace App\Filament\Resources;
 
- use Closure;
- use Illuminate\Support\Str;
+ 
  use App\Filament\Resources\CategoryResource\Pages;
- use App\Filament\Resources\CategoryResource\RelationManagers;
+ use App\Filament\Resources\CategoryResource\RelationManagers\PostsRelationManager;
  use App\Models\Category;
  use Filament\Forms;
  use Filament\Forms\Form;
  use Filament\Resources\Resource;
  use Filament\Tables;
  use Filament\Tables\Table;
- use Illuminate\Database\Eloquent\Builder;
- use Illuminate\Database\Eloquent\SoftDeletingScope;
-
- use App\Models\Post;
- use App\Models\Posts;
+ 
  
  use Filament\Forms\Components\TextInput; 
- use Filament\Forms\Components\Textarea;
- use Filament\Forms\Components\DatePicker;
- use Filament\Forms\Components\DateTimePicker;
- use Filament\Forms\Components\TimePicker;
- use Filament\Forms\Components\Require;
- use Filament\Forms\Components\FileUpload;
- use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
- use Filament\Forms\Components\MarkdownEditor; 
- use Filament\Forms\Components\Card; 
- use Filament\Actions\CreateAction;
+   use Filament\Forms\Components\Card; 
+ 
  
 
 class CategoryResource extends Resource
@@ -40,8 +27,8 @@ class CategoryResource extends Resource
     {
         return $form
         ->schema([
-            Card::make()->schema([TextInput::make('name') 
-            ->required(),
+            Card::make()->schema([TextInput::make('name')
+           ->required(),
          ])
                  
         ]);
@@ -70,7 +57,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class
         ];
     }
 

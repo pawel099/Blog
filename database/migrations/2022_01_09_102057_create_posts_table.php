@@ -25,16 +25,12 @@ class CreatePostsTable extends Migration
         });
 
  
-            Schema::table('posts', function (Blueprint $table) {
+                Schema::table('posts', function (Blueprint $table) {
                 
                 $table->foreignId('category_id')->constrained()->onDelete('cascade');
-                $table->string('slug')->unique();
                 $table->boolean('is_published')->default(false);
                 
-               
-                 
-    
-            });
+        });
     }
 /**
      * Reverse the migrations.

@@ -2,62 +2,47 @@
 
 namespace App\Models;
  
+use App\Models\Comments;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use App\Models\Comments;
-use App\Models\RelationManager;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  
-
-
-class Posts extends Model implements HasMedia { 
+ class Posts extends Model implements HasMedia { 
   
   use HasFactory;
   use InteractsWithMedia;
-  // use RelationManager;
+  
   protected $cats = [
-
-    'is_published'=>'boolean',
+  'is_published'=>'boolean',
   ];
 
-protected $fillable = [
+  protected $fillable = [
 
-'id',
- 'tytul',
-'tresc',
-'slug',
-'category_id',
-'is_published',
+  'id','tytul','tresc','category_id','is_published','image_path',
+  
  
- 'image_path',
- 
+ ];
 
-];
+ public function tags():BelongsToMany {
+
+  return $this->belongsToMany(Tag::class,'posts_id','tags_id');
+    
+  }
 
 
-public function category()   {
+  public function category()   {
 
   return $this->belongsTo(Category::class);
   
   }
 
-  public function tags()   {
-
-    return $this->belongsTo(Tag::class);
-    
-    }
   
+  
+    public function comments() {
+    return $this->hasMany(Comments::class,'comments_id');
 
-
-
- 
-public function comments() {
-
-return $this->hasMany(Comments::class,'comments_id');
-
-}
-
-
+   }
 }

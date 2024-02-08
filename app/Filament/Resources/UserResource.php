@@ -24,6 +24,8 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+
+                
                  
             ]);
     }
@@ -35,8 +37,6 @@ class UserResource extends Resource
 
                 Tables\Columns\TextColumn::make('id') ,
                 Tables\Columns\TextColumn::make('email') ,
-                Tables\Columns\TextColumn::make('password') ,
-                Tables\Columns\TextColumn::make('avatar') ,
                 Tables\Columns\TextColumn::make('role') ,
                 Tables\Columns\TextColumn::make('created_at') ,
                 Tables\Columns\TextColumn::make('updated_at') ,
@@ -46,7 +46,7 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
                  
             ])
             ->bulkActions([
