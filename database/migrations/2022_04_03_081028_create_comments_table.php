@@ -16,8 +16,8 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('comments_id')->unsigned();
-            $table->string('nickcomentarza');
-            $table->string('adresemail');
+            $table->string('nick');
+            $table->string('email');
 
             $table->text('contents');
             $table->foreign('comments_id')->references('id')->on('posts')->onDelete('cascade');
@@ -25,10 +25,10 @@ class CreateCommentsTable extends Migration
         });
 
 Schema::table('comments', function (Blueprint $table) {
-            $table->enum('status', ['T', 'N'])->default('N')->after('adresemail');
+            $table->enum('status', [0, 1])->default(0)->after('email');
 
 
-                    });
+           });
         }
 
     /**

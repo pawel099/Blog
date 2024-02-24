@@ -12,9 +12,10 @@ class Comments extends Model
   protected $fillable = [
    'id',
    'comments_id',
-   'nickcomentarza',
-   'adresemail',
+   'nick',
+   'email',
    'contents',
+   'status'
 
   ];
 
@@ -23,7 +24,7 @@ class Comments extends Model
 public function post()
 
 {
-return $this->belongsTo(Posts::class);
+return $this->belongsTo(Posts::class,'id');
 }
 
 }

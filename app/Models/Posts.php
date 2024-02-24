@@ -21,7 +21,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
   protected $fillable = [
 
-  'id','tytul','tresc','category_id','is_published','image_path',
+  'id',
+  'tytul',
+  'tresc',
+  'category_id',
+  'is_published',
+  'image_path',
   
  
  ];

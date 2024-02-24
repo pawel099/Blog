@@ -1,13 +1,15 @@
 <?php
 namespace App\Filament\Resources;
  
-use App\Filament\Resources\PostResource\RelationManagers\TagsRelationManager;
+use App\Filament\Resources\CommentsResource\RelationManagers\PostRelationManager;
+use Spatie\MediaLibrary\MediaCollections\File;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+
 use App\Filament\Resources\PostResource\Pages;
  
 use App\Models\Posts;
- 
+  
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -51,10 +53,12 @@ use Filament\Forms\Components\RichEditor;
             ->columns([
                 
                 Tables\Columns\TextColumn::make('id') ,
+
                 SpatieMediaLibraryImageColumn::make('image_path')->collection('image_path')
                 ->size(50),
-                Tables\Columns\TextColumn::make('tytul') ,
-                Tables\Columns\BooleanColumn::make('is_published') ,
+             
+                Tables\Columns\TextColumn::make('tytul'),
+                Tables\Columns\BooleanColumn::make('is_published'),
                 Tables\Columns\TextColumn::make('created_at') ,
                 Tables\Columns\TextColumn::make('updated_at') ,
                 
@@ -77,7 +81,11 @@ use Filament\Forms\Components\RichEditor;
     {
         return [
 
-            TagsRelationManager::class
+           // TagsRelationManager::class
+           // PostyidRelationManager::class
+           PostRelationManager::class
+           
+
             
         ];
     }
