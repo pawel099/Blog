@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostsController;
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+   // return view('page');
+//});
+
+
+
+
+  
+ Route::get('/', [PostsController::class,'index']);
+ Route::get('/post/{id}', [PostsController::class, 'article'])->name('view_article');
+ Route::post('/comment/{id}', [PostsController::class, 'comments'])->name('comment');

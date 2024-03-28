@@ -9,6 +9,11 @@ use App\Models\Posts;
 class Comments extends Model
 {
   use HasFactory;
+  protected $cats = [
+    'status'=>'boolean',
+    ];
+
+
   protected $fillable = [
    'id',
    'comments_id',

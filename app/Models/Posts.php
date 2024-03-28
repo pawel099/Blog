@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
   'id',
   'tytul',
   'tresc',
+  'naglowek',
   'category_id',
   'is_published',
   'image_path',

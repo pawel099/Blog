@@ -33,7 +33,9 @@ class PostsController extends Controller
 
     $posts = Posts::all();
 
-  return view('strona',['program'=>$posts ]);
+    // $posts->getFirstMedia()->toHtml();
+
+  return view('page',['posts'=>$posts ]);
 
 }
 
@@ -54,10 +56,9 @@ class PostsController extends Controller
 
 
 	 public function comments(Request $request,$id) {
-
-		$comments = new Comments($request->all());
+    $comments = new Comments($request->all());
         $comments->save();
-        return redirect(route('coments',['id' => $id]))->with('status', __('add_coment_success'));
+        return redirect(route('view_article',['id' => $id]))->with('status', __('add_coment_success'));
 	 }
 
 
@@ -65,7 +66,7 @@ class PostsController extends Controller
 
 	{
       $post = Posts::find($id);
-	      return view('post',['viewposts'=>$post]);
+	      return view('post_view_page',['viewposts'=>$post]);
     }
 
 /**

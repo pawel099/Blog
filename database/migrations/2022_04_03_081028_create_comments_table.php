@@ -25,10 +25,8 @@ class CreateCommentsTable extends Migration
         });
 
 Schema::table('comments', function (Blueprint $table) {
-            $table->enum('status', [0, 1])->default(0)->after('email');
-
-
-           });
+            $table->boolean('status')->default(false)->after('email');
+            });
         }
 
     /**

@@ -39,7 +39,7 @@ use Filament\Forms\Components\RichEditor;
                     BelongsToSelect::make('category_id')
                     ->relationship('category','name'),
                     TextInput::make('tytul')->required(),
-                     
+                    TextInput::make('naglowek')->required(), 
                     SpatieMediaLibraryFileUpload::make('image_path')->collection('image_path'),
                     RichEditor::make('tresc'),
                     Toggle::make('is_published')
@@ -58,6 +58,7 @@ use Filament\Forms\Components\RichEditor;
                 ->size(50),
              
                 Tables\Columns\TextColumn::make('tytul'),
+                
                 Tables\Columns\BooleanColumn::make('is_published'),
                 Tables\Columns\TextColumn::make('created_at') ,
                 Tables\Columns\TextColumn::make('updated_at') ,
@@ -81,8 +82,7 @@ use Filament\Forms\Components\RichEditor;
     {
         return [
 
-           // TagsRelationManager::class
-           // PostyidRelationManager::class
+           
            PostRelationManager::class
            
 
