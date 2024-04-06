@@ -1,1 +1,2 @@
-*.sqlite/baza.db*
+ 
+*database\sqlite\baza.db*

@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 database/baza.db
 database/db/laravel.db
+database/sqlite/baza-danych.db
