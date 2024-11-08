@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
   
   use HasFactory;
   use InteractsWithMedia;
-  
   protected $cats = [
   'is_published'=>'boolean',
+  'video' => 'array',
   ];
 
   protected $fillable = [

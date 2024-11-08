@@ -5,7 +5,7 @@ use App\Filament\Resources\CommentsResource\RelationManagers\PostRelationManager
 use Spatie\MediaLibrary\MediaCollections\File;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-
+use TomatoPHP\FilamentMediaManager\Form\MediaManagerInput;
 use App\Filament\Resources\PostResource\Pages;
  
 use App\Models\Posts;

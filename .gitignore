@@ -17,6 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-database/baza.db
+database/baza.sqlite
 database/db/laravel.db
 database/sqlite/baza-danych.db

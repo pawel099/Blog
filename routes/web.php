@@ -19,9 +19,6 @@ use App\Http\Controllers\PostsController;
 //});
 
 
-
-
-  
  Route::get('/', [PostsController::class,'index']);
  Route::get('/post/{id}', [PostsController::class, 'article'])->name('view_article');
  Route::post('/comment/{id}', [PostsController::class, 'comments'])->name('comment');

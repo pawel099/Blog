@@ -31,6 +31,7 @@
                  
                 {{$post->getFirstMedia('image_path')}}
                 
+                
                 <div class="card-body">
                 <p style="margin-right:12px; width:750px;" class="card-text">{{$post->naglowek}}<a href="{{route('view_article',$post->id)}}">  read more  </a><br></p>
                   

@@ -17,23 +17,30 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+         
             ->default()
             ->id('admin')
             ->path('admin')
+            
+            
             ->login()
             ->registration()
             ->passwordReset()
             //->emailVerification()
             ->profile()
+            
             ->colors([
                 'primary' => Color::Blue,
             ])
+            //->plugin(FilamentMediaManagerPlugin::make()->allowUserAccess())
+
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

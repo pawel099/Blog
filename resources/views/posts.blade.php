@@ -55,8 +55,23 @@
                 <div class="bg-white">
                     <div class="d-flex flex-row fs-12">
                         <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
-                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment ({{$viewposts->comments->count()}})
-                    </span></div>
+                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">
+                      
+                        
+                       @if (isset($viewposts->comment->status))
+
+                       {{$viewposts->count()}}
+
+                       @endif
+                      
+                       @if ($viewposts->count()>0 && $viewposts->status==true)
+
+                       comment {{$viewposts->status}}
+                       
+                        
+                       @endif
+
+                     </span></div>
                   
                         <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
                     </div>
